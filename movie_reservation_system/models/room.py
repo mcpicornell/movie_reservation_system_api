@@ -2,7 +2,6 @@ import uuid
 
 from django.db import models
 
-
 class Room(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=10)
@@ -24,8 +23,15 @@ class Seat(models.Model):
     def __str__(self):
         return self.name
 
+    def is_available(self, show_time_id):
+        from movie_reservation_system.models import Ticket
+        return not Ticket.objects.filter(seat_id=self.id, show_time_id=show_time_id).exists()
+
 class Row(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     room = models.ForeignKey('Room', related_name='rows', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
