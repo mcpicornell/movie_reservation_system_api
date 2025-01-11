@@ -13,7 +13,7 @@ class SeatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Seat
-        fields = ['name', 'row', 'room']
+        fields = ['name', 'row', 'room', 'is_available']
 
     def get_is_available(self, obj):
         show_time_id = self.context.get('show_time_id')
