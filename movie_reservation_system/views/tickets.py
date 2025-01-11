@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from movie_reservation_system.models import Ticket
 from movie_reservation_system.permissions.is_staff import IsStaffPermission
 from movie_reservation_system.serializers import TicketSerializer
+from movie_reservation_system.views.paginators import TicketPagination
 
 
 class TicketViewSet(viewsets.ModelViewSet):
@@ -12,10 +13,9 @@ class TicketViewSet(viewsets.ModelViewSet):
     serializer_class = TicketSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
-
-    # filterset_fields = ['user', 'is_active']
+    pagination_class = TicketPagination
 
     def get_permissions(self):
-        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+        if self.action in ['update', 'partial_update', 'destroy']:
             return [IsStaffPermission]
         return super().get_permissions()

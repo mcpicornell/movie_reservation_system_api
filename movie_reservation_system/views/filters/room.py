@@ -1,5 +1,7 @@
 import django_filters
-from movie_reservation_system.models import Seat, Ticket
+
+from movie_reservation_system.models import Seat
+
 
 class SeatFilter(django_filters.FilterSet):
     room_id = django_filters.UUIDFilter(field_name="room__id", lookup_expr='exact')

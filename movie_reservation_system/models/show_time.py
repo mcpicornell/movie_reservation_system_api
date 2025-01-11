@@ -27,3 +27,10 @@ class ShowTime(models.Model):
         naive_date = datetime.datetime.now() + datetime.timedelta(days=365 * years)
         self.end_date = timezone.make_aware(naive_date)
         self.save(update_fields=['end_date'])
+
+    def set_end_show_time(self):
+        delta = datetime.timedelta(minutes=self.movie.duration)
+        start_time = datetime.datetime.combine(datetime.date.today(), self.start_show_time)
+        end_show_time = start_time + delta
+        self.end_show_time = end_show_time.time()
+        self.save(update_fields=['end_show_time'])

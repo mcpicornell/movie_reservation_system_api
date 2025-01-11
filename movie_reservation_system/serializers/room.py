@@ -4,7 +4,7 @@ from movie_reservation_system.models import Seat, Room, Row
 class RowSerializer(serializers.ModelSerializer):
     class Meta:
         model = Row
-        fields = ['name']
+        fields = ['id', 'name']
 
 class SeatSerializer(serializers.ModelSerializer):
     row = serializers.CharField(source='row.name', read_only=True)
@@ -13,7 +13,7 @@ class SeatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Seat
-        fields = ['name', 'row', 'room', 'is_available']
+        fields = ['id', 'name', 'row', 'room', 'is_available']
 
     def get_is_available(self, obj):
         show_time_id = self.context.get('show_time_id')
@@ -29,4 +29,4 @@ class RoomSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Room
-        fields = ['name',  'seats']
+        fields = ['id', 'name',  'seats']

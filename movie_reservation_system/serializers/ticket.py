@@ -10,7 +10,7 @@ class TicketSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ticket
-        fields = ['user', 'start_show_time', 'display_name', 'show_time_day']
+        fields = ['id', 'user', 'start_show_time', 'display_name', 'show_time_day']
 
     @staticmethod
     def get_display_name(obj):
