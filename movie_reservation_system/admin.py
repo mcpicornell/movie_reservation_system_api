@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Movie, MovieGenre, Ticket, Room, Row, Seat
+from .models import Movie, MovieGenre, Ticket, Room, Row, Seat, ShowTime
 
 
 # Registrar MovieGenre
@@ -36,3 +36,7 @@ class RowAdmin(admin.ModelAdmin):
 @admin.register(Seat)
 class SeatAdmin(admin.ModelAdmin):
     list_display = ('name', 'row', 'room')
+
+@admin.register(ShowTime)
+class ShowTimeAdmin(admin.ModelAdmin):
+    list_display = ('movie', 'room', 'start_show_time', 'end_show_time')
