@@ -23,9 +23,13 @@ class Seat(models.Model):
     def __str__(self):
         return self.name
 
-    def is_available(self, show_time_id):
+    def is_available(self, show_time_id, show_time_day):
         from movie_reservation_system.models import Ticket
-        return not Ticket.objects.filter(seat_id=self.id, show_time_id=show_time_id).exists()
+        return not Ticket.objects.filter(
+            seat_id=self.id,
+            show_time_id=show_time_id,
+            show_time_day=show_time_day
+        ).exists()
 
 class Row(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

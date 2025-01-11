@@ -10,16 +10,10 @@ class Movie(models.Model):
     poster_url = models.URLField(max_length=255)
     rating = models.FloatField()
     release_date = models.DateField()
-    created_at = models.DateTimeField(auto_now_add=True)
     genres = models.ManyToManyField('MovieGenre', related_name='movies')
-    tmdb_id = models.IntegerField(blank=True, null=True)
     duration = models.IntegerField(blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        if not self.duration:
-            self.duration = random.randint(90, 180)
-
-        super(Movie, self).save(*args, **kwargs)
+    tmdb_id = models.IntegerField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
