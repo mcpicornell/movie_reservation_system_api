@@ -12,5 +12,5 @@ class ShowTimeFilter(django_filters.FilterSet):
             'movie__genres__name': ['exact'],
             'movie__genres__id': ['in'],
             'movie__title': ['icontains'],
-            'end_date': ['exact', 'lte', 'gte'],
+            'end_date': ['exact', 'lt'],
         }
