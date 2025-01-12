@@ -1,6 +1,5 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from movie_reservation_system.views import RoomViewSet, RowViewSet, MovieViewSet, TicketViewSet, ShowTimeViewSet, \
     SeatViewSet, MovieGenreViewSet

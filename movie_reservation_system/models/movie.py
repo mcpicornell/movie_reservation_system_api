@@ -1,5 +1,5 @@
 import uuid
-import random
+
 from django.db import models
 
 
